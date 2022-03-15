@@ -1,0 +1,44 @@
+---
+title: "R Notebook"
+output: html_notebook
+author: "101033"
+---
+
+```{r}
+#Multiple regression
+#install.packages('readxl')
+library('readxl')
+
+#read excel data
+df <- read_excel("Data1.xlsx")
+
+#view the data
+View(df)
+```
+
+```{r}
+#building the model
+mlmodel <- lm(Salaries ~ df[['Years of Experience']] + Age + Gender + Region, data=df)
+summary(mlmodel)
+```
+
+
+```{r}
+plot(mlmodel)
+```
+```{r}
+#Residual/ Sigma RSE 
+sigma(mlmodel)/mean(df$Salaries)
+```
+INTERPRETATION 
+
+*Adjusted R-squared is 0.9349 which is shows that 93.49% of the variance in the measure of Salaries can be predicted by Years of Experience, Age, Gender and Region. * 
+
+*The P-value (< 2.2e-16) is less than 0.05 which shows the test is statistically significant hence indicating that ateast one of the indicator variable is significantly related to the outcome variable.*
+
+*It can be seen that, changing in Years of experience and age advertising budget are significantly associated to changes in Salary while changes in Gender and Region budget is not significantly associated with Salaries.*
+
+RSE : 
+*The model have a very low error level rate of 2.24% so we assume the model is accurate and can be used for Linear Regression. *
+
+ 
